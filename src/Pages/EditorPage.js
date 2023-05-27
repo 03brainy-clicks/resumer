@@ -6,11 +6,10 @@ import { useSelector } from "react-redux";
 const EditorPage = () => {
   const [state, setState] = useState(0);
   const document = useSelector((state) => state.document.document);
-  console.log(document);
   const Component = Resume(document?.template);
 
   return (
-    <div>
+    <div className="bg-gray-50 min-h-[100vh]">
       <div className="lg:w-9/12 w-10/12 mx-auto py-5  ">
         <div
           className="flex items-center justify-between gap-3 text-lg font-medium  text-gray-400 my-7"
@@ -104,12 +103,16 @@ const EditorPage = () => {
           </Link>
         </div>
       </div>
-      <div className="lg:w-9/12 w-10/12 mx-auto flex gap-7  ">
+      <div className="lg:w-9/12 w-10/12 mx-auto flex gap-7">
         <div className="flex-1 ">
           <Outlet />
         </div>
-        <div className="flex-1 w-[210mm] flex items-start overflow-auto " data-aos="fade-up" data-aos-duration="2000" >
-          <div className=" w-full scale-[0.70707070707] h-full">
+        <div
+          className="flex-1 flex relative justify-center "
+          data-aos="fade-up"
+          data-aos-duration="2000"
+        >
+          <div className="w-[37.205rem] min-h-[52.618rem] mx-auto scale-[.7] absolute top-[5%] origin-top">
             <Component />
           </div>
         </div>

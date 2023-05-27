@@ -5,7 +5,6 @@ import ResumeThree from "./ResumeThree";
 import ResumeTwo from "./ResumeTwo";
 
 const Resume = (name) => {
-  console.log(name);
   switch (name) {
     case "Resume-1": {
       return ResumeOne;
@@ -23,7 +22,6 @@ const Resume = (name) => {
       return ResumeFive;
     }
     default: {
-      console.log("default called");
       return ResumeFive;
     }
   }

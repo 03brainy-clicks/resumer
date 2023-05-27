@@ -66,9 +66,9 @@ const HomePage = () => {
     <>
       <Navigation />
       <div>
-        <div className="lg:w-9/12 w-10/12 mx-auto py-10 flex flex-col gap-10">
+        <div className="lg:w-9/12 w-10/12 mx-auto py-10 flex flex-col gap-11">
           <div
-            className="flex gap-10 p-16 bg-gradient-to-r from-indigo-600 from-10% via-sky-500 via-60% to-indigo-400 to-90% text-white"
+            className="flex gap-10 p-24 anime-gradient text-white"
             data-aos="fade-down"
             data-aos-duration="2000"
           >
@@ -112,28 +112,29 @@ const HomePage = () => {
             </div>
           </div>
           <hr />
-          <div>
-            <h3 className="text-xl font-bold ">Your Documents</h3>
 
-            {files?.length > 0 ? (
-              <div className="mt-5 flex gap-7 flex-wrap">
-                {files.map((item, index) => {
-                  return (
-                    <DocumentCard resumeNumber={item.resumeNo} key={index} />
-                  );
-                })}{" "}
-              </div>
-            ) : (
-              <div className="py-10 flex items-center justify-center text-center text-gray-200">
-                <div>
-                  <h3 className="text-lg font-bold ">
-                    You don't have any document
-                  </h3>
-                  <p>Create one</p>
+          {files?.length > 0 ? (
+            <>  
+              {" "}
+              <div>
+                <h3 className="text-xl font-bold ">Your Documents</h3>
+                <div className="mt-5 flex gap-7 flex-wrap">
+                  {files.map((item, index) => {
+                    return (
+                      <DocumentCard
+                        resumeNumber={item.resumeNo}
+                        key={item.uid}
+                        data={item}
+                      />
+                    );
+                  })}{" "}
                 </div>
-              </div>
-            )}
-          </div>{" "}
+              </div>{" "}
+            </>
+          ) : (
+            ""
+          )}
+
           <div>
             <h3 className="text-xl font-bold ">Templates</h3>
             <div className="mt-5 flex gap-7 flex-wrap">

@@ -2,12 +2,14 @@ import { faArrowLeft } from "@fortawesome/free-solid-svg-icons";
 import { FontAwesomeIcon } from "@fortawesome/react-fontawesome";
 import React, { useState } from "react";
 import { Link, useNavigate } from "react-router-dom";
-import { auth } from "../Firebase/Firebase.Config";
+import { auth, db } from "../Firebase/Firebase.Config";
 import { signInWithEmailAndPassword } from "firebase/auth";
 import { useDispatch } from "react-redux";
 import { addUserCred } from "../Redux/Slice/UserSlice";
 import { toast } from "react-toastify";
 import { validEmail, validPassword } from "../utils/Regex";
+import { doc, getDoc } from "firebase/firestore";
+import { addFiles } from "../Redux/Slice/FilesSlice";
 
 const LoginPage = () => {
   const [email, setEmail] = useState("");
@@ -25,25 +27,24 @@ const LoginPage = () => {
   const handleLogin = async (e) => {
     e.preventDefault();
     reset();
-  
-
     if (!validEmail.test(email)) {
       setEmailErr(true);
     }
-
     if (!validPassword.test(password)) {
       setPwdError(true);
     }
-
     if (email && password && !emailErr && !pwdError) {
       await signInWithEmailAndPassword(auth, email, password)
-        .then((res) => {
+        .then(async (res) => {
           toast.success("Login Successful");
           let cred = {
             email: res.user.email,
             uid: res.user.uid,
           };
           dispatch(addUserCred(cred));
+          let snap = await getDoc(doc(db, "userFiles", res.user.uid));
+          let data = snap.data();
+          dispatch(addFiles(data.files));
           navigate("/home");
         })
         .catch((error) => {
@@ -56,10 +57,13 @@ const LoginPage = () => {
 
   return (
     <div className="">
-      <div className="lg:w-9/12 w-10/12 mx-auto flex justify-center items-center h-[100vh]  " >
-        <div className="lg:w-1/3 md:3/4 w-full shadow-2xl card p-9 rounded-sm" data-aos="fade-up"
-          data-aos-duration="2000">
-          <h3 className="text-xl text-center  font-semibold" >
+      <div className="lg:w-9/12 w-10/12 mx-auto flex justify-center items-center h-[100vh]  ">
+        <div
+          className="lg:w-1/3 md:3/4 w-full shadow-2xl card p-9 rounded-sm"
+          data-aos="fade-up"
+          data-aos-duration="2000"
+        >
+          <h3 className="text-xl text-center  font-semibold">
             Resumer<span className="text-indigo-500">.</span>{" "}
           </h3>{" "}
           <h4 className="text-2xl font-semibold text-center mt-2">
@@ -80,7 +84,7 @@ const LoginPage = () => {
                 onChange={(e) => setEmail(e.target.value)}
                 placeholder="Email"
                 required
-                className="py-2 px-2 bg-indigo-50 rounded-sm  text-sm  mt-1 w-full outline-none  "
+                className="py-2 px-2 bg-gray-100 rounded-sm  text-sm  mt-1 w-full outline-none  "
               />
               {emailErr && (
                 <p className="text-red-500 mt-1 text-xs">
@@ -99,7 +103,7 @@ const LoginPage = () => {
                 value={password}
                 required
                 onChange={(e) => setPassword(e.target.value)}
-                className="py-2 px-2 bg-indigo-50 rounded-sm  text-sm  my-1  w-full outline-none  "
+                className="py-2 px-2 bg-gray-100 rounded-sm  text-sm  my-1  w-full outline-none  "
               />
               {pwdError && (
                 <p className="text-red-500 mt-1 text-xs">

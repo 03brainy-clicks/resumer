@@ -3,6 +3,8 @@ import { useDispatch, useSelector } from "react-redux";
 import { Link } from "react-router-dom";
 import { addContact } from "../../Redux/Slice/ContactSlice";
 import { toast } from "react-toastify";
+import { FontAwesomeIcon } from "@fortawesome/react-fontawesome";
+import { faArrowLeft, faArrowRight } from "@fortawesome/free-solid-svg-icons";
 
 const ContactForm = () => {
   const dispatch = useDispatch();
@@ -12,10 +14,6 @@ const ContactForm = () => {
   const [phone, setPhone] = useState(contact?.phone);
   const [website, setWebsite] = useState(contact?.website);
   const [address, setAddress] = useState(contact?.address);
-  const [linkedin, setLinkedin] = useState(contact?.linkedin);
-  const [instagram, setInstagram] = useState(contact?.instagram);
-  const [twitter, setTwitter] = useState(contact?.twitter);
-  const [facebook, setFacebook] = useState(contact?.facebook);
 
   const handleContact = (e) => {
     e.preventDefault();
@@ -24,10 +22,6 @@ const ContactForm = () => {
       phone,
       website,
       address,
-      linkedin,
-      facebook,
-      instagram,
-      twitter,
     };
     dispatch(addContact(data));
     toast.success("Contact set");
@@ -104,42 +98,6 @@ const ContactForm = () => {
               className="py-2 px-2 bg-indigo-50 rounded-sm  text-sm  mt-1 w-full outline-none  "
             />
           </div>{" "}
-          <div className="w-full ">
-            <label htmlFor="Social Links" className="text-sm font-medium">
-              Social Links
-            </label>
-            <br />
-            <div className="lg:flex gap-3 ">
-              <input
-                type="text"
-                value={linkedin}
-                onChange={(e) => setLinkedin(e.target.value)}
-                placeholder="Linkedin"
-                className="py-2 px-2 bg-indigo-50 rounded-sm  text-sm  mt-1 w-full outline-none  "
-              />{" "}
-              <input
-                type="text"
-                placeholder="Instagram"
-                value={instagram}
-                onChange={(e) => setInstagram(e.target.value)}
-                className="py-2 px-2 bg-indigo-50 rounded-sm  text-sm  mt-1 w-full outline-none  "
-              />{" "}
-              <input
-                type="text"
-                placeholder="Facebook"
-                value={facebook}
-                onChange={(e) => setFacebook(e.target.value)}
-                className="py-2 px-2 bg-indigo-50 rounded-sm  text-sm  mt-1 w-full outline-none  "
-              />{" "}
-              <input
-                type="text"
-                placeholder="Twitter"
-                value={twitter}
-                onChange={(e) => setTwitter(e.target.value)}
-                className="py-2 px-2 bg-indigo-50 rounded-sm  text-sm  mt-1 w-full outline-none  "
-              />
-            </div>
-          </div>
           <div className="">
             <button
               onClick={handleContact}
@@ -153,12 +111,12 @@ const ContactForm = () => {
       <div className="flex mt-11 justify-between">
         <Link to={"/editor/userdetails"}>
           <button className=" bg-gray-200 text-sm  rounded-sm  transition duration-200 ease-in-out py-2 px-5  hover:bg-gray-300">
-            Back
+          <FontAwesomeIcon icon={faArrowLeft } size="sm" className="mr-1"/>  Back 
           </button>
         </Link>
         <Link to={"/editor/experience"}>
           <button className=" bg-indigo-600 text-sm  rounded-sm  transition duration-200 ease-in-out py-2 px-5 text-white hover:bg-indigo-800">
-            Next
+          Next <FontAwesomeIcon icon={faArrowRight}  size="sm" className="ml-1" />
           </button>
         </Link>
       </div>

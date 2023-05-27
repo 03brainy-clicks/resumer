@@ -3,6 +3,9 @@ module.exports = {
   content: [
     "./src/**/*.{js,jsx,ts,tsx}",
   ],
+  purge: {
+    enabled: true,
+  },
   theme: {
     extend: {},
   },

@@ -12,7 +12,7 @@ const ExperienceSlice = createSlice({
       state.experience = action.payload;
     },
     resetExperience(state, action) {
-      state.experience = action.payload;
+      state.experience = [];
     },
   },
 });

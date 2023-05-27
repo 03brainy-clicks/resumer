@@ -1,31 +1,32 @@
 import React, { useState } from "react";
 import { useDispatch, useSelector } from "react-redux";
-import { Link, useNavigate } from "react-router-dom";
-import { ReactComponent as Avatar } from "../assets/avatar.svg";
+import { Link } from "react-router-dom";
 import { signOut } from "firebase/auth";
 import { auth } from "../Firebase/Firebase.Config";
 import { resetAllStore } from "../utils/FirebaseFunction";
 import { toast } from "react-toastify";
+import DropDown from "./DropDown";
 
 const Navigation = () => {
   const [active, setActive] = useState("home");
   const dispatch = useDispatch();
   const cred = useSelector((state) => state.user.cred);
-  const navigate = useNavigate();
 
   const handleLogout = async () => {
     signOut(auth)
       .then((res) => {
         resetAllStore(dispatch);
-        navigate("/");
       })
       .catch((e) => {
-        toast.error("Logout error")
+        toast.error("Logout error");
       });
   };
   return (
-    <div className="sticky top-0 bg-white z-50"  data-aos="fade-down"
-    data-aos-duration="1500">
+    <div
+      className="sticky top-0 bg-white z-50 shadow"
+      data-aos="fade-down"
+      data-aos-duration="1500"
+    >
       <div className="lg:w-9/12 w-10/12 mx-auto flex justify-between items-center py-3 ">
         <div className="logo">
           <h3 className="text-xl font-semibold">
@@ -65,18 +66,11 @@ const Navigation = () => {
 
             {cred?.email ? (
               <>
-                {" "}
-                <li className="flex items-center">
-                  <Avatar className="w-9 h-9 block mr-2" />
-                  <span className="Truncate ">{cred?.email.split("@")[0]}</span>
-                </li>
                 <li>
-                  <button
-                    onClick={handleLogout}
-                    className="bg-gray-300 transition  rounded-sm duration-500  ease-in-out py-2 px-5 text-white hover:bg-red-600"
-                  >
-                    Logout
-                  </button>
+                  <DropDown
+                    user={cred?.email.split("@")[0]}
+                    logout={handleLogout}
+                  />
                 </li>
               </>
             ) : (

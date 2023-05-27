@@ -1,13 +1,16 @@
 import React, { useState } from "react";
 import { useDispatch, useSelector } from "react-redux";
-import { Link } from "react-router-dom";
+import { Link, useNavigate } from "react-router-dom";
 import { addDocument } from "../../Redux/Slice/DocumentSlice";
 import { toast } from "react-toastify";
 import { BlockPicker } from "react-color";
+import { resetAllStoreAfterSave } from "../../utils/FirebaseFunction";
+import { FontAwesomeIcon } from "@fortawesome/react-fontawesome";
+import { faArrowLeft, faArrowRight } from "@fortawesome/free-solid-svg-icons";
 
 const DocumentForm = () => {
   const dispatch = useDispatch();
-
+  const navigate = useNavigate();
   // * document
   const document = useSelector((state) => state.document.document);
   const [documentName, setDocumentName] = useState(document?.documentName);
@@ -29,6 +32,12 @@ const DocumentForm = () => {
       };
       dispatch(addDocument(data));
     }
+  };
+
+  const handleReset = (e) => {
+    e.preventDefault();
+    resetAllStoreAfterSave(dispatch);
+    navigate("/home");
   };
 
   //   for changing color of BlockPicker
@@ -67,7 +76,7 @@ const DocumentForm = () => {
               value={documentName}
               onChange={(e) => setDocumentName(e.target.value)}
               placeholder="Document Name"
-              className="py-2 px-2 bg-indigo-50 rounded-sm  text-sm  mt-1 w-full outline-none  "
+              className="py-2 px-2 bg-gray-200 rounded-sm  text-sm  mt-1 w-full outline-none  "
             />
           </div>
           <div className="w-full flex gap-5 items-center ">
@@ -77,7 +86,7 @@ const DocumentForm = () => {
               </label>
               <br />
 
-              <BlockPicker
+              <BlockPicker  
                 className="mt-5"
                 color={document?.textColor}
                 onChangeComplete={handleChangeText}
@@ -106,14 +115,17 @@ const DocumentForm = () => {
         </form>
       </div>
       <div className="flex mt-11 justify-between">
-        <Link to={"/"}>
-          <button className=" bg-gray-200 text-sm  rounded-sm  transition duration-200 ease-in-out py-2 px-5  hover:bg-gray-300">
-            Back home
-          </button>
-        </Link>
+        <button
+          onClick={handleReset}
+          className=" bg-gray-200 text-sm  rounded-sm  transition duration-200 ease-in-out py-2 px-5  hover:bg-gray-300"
+        >
+          <FontAwesomeIcon icon={faArrowLeft} size="sm" className="mr-1" /> Back
+          home
+        </button>
         <Link to={"/editor/userdetails"}>
           <button className=" bg-indigo-600 text-sm  rounded-sm  transition duration-200 ease-in-out py-2 px-5 text-white hover:bg-indigo-800">
-            Next
+            Next{" "}
+            <FontAwesomeIcon icon={faArrowRight} size="sm" className="ml-1" />
           </button>
         </Link>
       </div>

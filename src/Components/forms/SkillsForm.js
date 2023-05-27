@@ -4,6 +4,8 @@ import { Link } from "react-router-dom";
 import { v4 as uuidv4 } from "uuid";
 import { toast } from "react-toastify";
 import { addSkills } from "../../Redux/Slice/SkillsSlice";
+import { FontAwesomeIcon } from "@fortawesome/react-fontawesome";
+import { faArrowLeft, faEye } from "@fortawesome/free-solid-svg-icons";
 
 const SkillsForm = () => {
   const dispatch = useDispatch();
@@ -102,7 +104,7 @@ const SkillsForm = () => {
               onChange={(e) => setproficiency(e.target.value)}
               className="py-2 placeholder:text-sm bg-indigo-50 rounded-sm  text-sm  mt-1 w-full outline-none  "
             >
-              <option selected>Choose a country</option>
+              <option selected>Proficiency</option>
               <option value="Beginner">Beginner</option>
               <option value="Intermediate">Intermediate</option>
               <option value="Expert">Expert</option>
@@ -122,12 +124,13 @@ const SkillsForm = () => {
       <div className="flex mt-11 justify-between">
         <Link to={"/editor/education"}>
           <button className=" bg-gray-200 text-sm  rounded-sm  transition duration-200 ease-in-out py-2 px-5  hover:bg-gray-300">
-            Back
+            <FontAwesomeIcon icon={faArrowLeft} size="sm" className="mr-1" />{" "}
+            Back home
           </button>
         </Link>
         <Link to={"/preview"}>
           <button className=" bg-indigo-600 text-sm  rounded-sm  transition duration-200 ease-in-out py-2 px-5 text-white hover:bg-indigo-800">
-           Preview
+            Preview <FontAwesomeIcon icon={faEye} size="sm" className="ml-1" />
           </button>
         </Link>
       </div>

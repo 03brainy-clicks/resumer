@@ -16,7 +16,7 @@ const TemplateCard = ({ data }) => {
         backgroundColor: data.backgroundColor,
       })
     );
-    navigate("/editor/userdetails");
+    navigate("/editor/document");
   };
   return (
     <div

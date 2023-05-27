@@ -1,4 +1,4 @@
-import { faTrash } from "@fortawesome/free-solid-svg-icons";
+import { faArrowLeft, faArrowRight, faTrash } from "@fortawesome/free-solid-svg-icons";
 import { FontAwesomeIcon } from "@fortawesome/react-fontawesome";
 import React, { useState } from "react";
 import { useDispatch, useSelector } from "react-redux";
@@ -188,12 +188,12 @@ const ExperienceForm = () => {
       <div className="flex mt-11 justify-between">
         <Link to={"/editor/contact"}>
           <button className=" bg-gray-200 text-sm  rounded-sm  transition duration-200 ease-in-out py-2 px-5  hover:bg-gray-300">
-            Back
+          <FontAwesomeIcon icon={faArrowLeft } size="sm" className="mr-1"/>  Back 
           </button>
         </Link>
         <Link to={"/editor/education"}>
           <button className=" bg-indigo-600 text-sm  rounded-sm  transition duration-200 ease-in-out py-2 px-5 text-white hover:bg-indigo-800">
-            Next
+          Next <FontAwesomeIcon icon={faArrowRight}  size="sm" className="ml-1" />
           </button>
         </Link>
       </div>

@@ -1,6 +1,7 @@
 import { createSlice } from "@reduxjs/toolkit";
 
-const initialState = {};
+const initialState = {
+};
 
 const ContactSlice = createSlice({
   name: "contact",
@@ -10,7 +11,7 @@ const ContactSlice = createSlice({
       state.contact = action.payload;
     },
     resetContact(state) {
-      state.contact = {};
+      state.contact = "";
     },
   },
 });

@@ -17,13 +17,16 @@ import AOS from "aos";
 import "aos/dist/aos.css";
 import Preview from "./Pages/Preview";
 import DocumentForm from "./Components/forms/DocumentForm";
+import { useSelector } from "react-redux";
+import PageNotFound from "./Pages/PageNotFound";
+import View from "./Pages/View";
 
 AOS.init({ once: true });
 function App() {
+  const cred = useSelector((state) => state.user.cred);
   return (
     <div class Name="text-gray-800">
       <ToastContainer position="top-right" autoClose={3000} closeOnClick />
-
       <Routes>
         <Route path="/editor" element={<EditorPage />}>
           <Route path="/editor/document" element={<DocumentForm />} />{" "}
@@ -33,12 +36,14 @@ function App() {
           <Route path="/editor/skills" element={<SkillsForm />} />{" "}
           <Route path="/editor/contact" element={<ContactForm />} />
         </Route>
-        <Route path="/preview" element={<Preview />} />
+        <Route path="/preview/" element={<Preview />} />
+        <Route path="/view/:id" element={<View />} />
         <Route path="/home" element={<HomePage />} />
         <Route path="/signup" element={<SignUpPage />} />
         <Route path="/login" element={<LoginPage />} />
         <Route path="/reset-password" element={<ResetPage />} />
         <Route path="/" element={<LandingPage />} />
+        <Route path="*" element={<PageNotFound />} />
       </Routes>
     </div>
   );
