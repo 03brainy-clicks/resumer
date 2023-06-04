@@ -7,7 +7,6 @@ import {
 } from "../../utils/FirebaseFunction";
 import { useNavigate } from "react-router-dom";
 import { useDispatch, useSelector } from "react-redux";
-import Resume from "../Resume/Index";
 import { doc, setDoc } from "firebase/firestore";
 import { db } from "../../Firebase/Firebase.Config";
 import { addFiles } from "../../Redux/Slice/FilesSlice";

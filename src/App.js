@@ -17,13 +17,11 @@ import AOS from "aos";
 import "aos/dist/aos.css";
 import Preview from "./Pages/Preview";
 import DocumentForm from "./Components/forms/DocumentForm";
-import { useSelector } from "react-redux";
 import PageNotFound from "./Pages/PageNotFound";
 import View from "./Pages/View";
 
 AOS.init({ once: true });
 function App() {
-  const cred = useSelector((state) => state.user.cred);
   return (
     <div class Name="text-gray-800">
       <ToastContainer position="top-right" autoClose={3000} closeOnClick />
