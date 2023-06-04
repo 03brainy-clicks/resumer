@@ -20,7 +20,7 @@ const TemplateCard = ({ data }) => {
   };
   return (
     <div
-      className="card p-5 basis-[18%] min-w-[200px] relative rounded"
+      className="card p-5 basis-[calc(20%-20px)] min-w-[200px] relative rounded"
       data-aos="fade-up"
       data-aos-duration="2000"
       onClick={handleCreate}

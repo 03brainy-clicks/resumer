@@ -61,8 +61,8 @@ const HomePage = () => {
     {
       resumeNo: Resume4,
       template: "Resume-4",
-      textColor: "#121212",
-      backgroundColor: "#030d54",
+      textColor: "#030d54",
+      backgroundColor: "#ffffff",
     },
     {
       resumeNo: Resume5,
@@ -147,7 +147,7 @@ const HomePage = () => {
 
           <div>
             <h3 className="text-xl font-bold ">Templates</h3>
-            <div className="mt-5 flex gap-7 flex-wrap">
+            <div className="mt-5 flex gap-5 flex-wrap">
               {templates.map((item, index) => {
                 return <TemplateCard data={item} key={index} />;
               })}

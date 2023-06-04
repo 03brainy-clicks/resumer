@@ -24,29 +24,33 @@ const ResumeThree = ({ data }) => {
       >
         <div className="w-2/5 flex flex-col gap-7">
           {/* heading  */}
-          <div className="p-5 text-white flex flex-col gap-3" style={style2}>
-            {userDetails?.image ? (
-              <div className="w-full h-32 rounded mx-auto overflow-hidden flex items-center  justify-center">
-                <img
-                  src={`${userDetails?.image}`}
-                  alt=""
-                  className="object-fit"
-                />
-              </div>
-            ) : (
-              ""
-            )}
+          {userDetails?.name ? (
+            <div className="p-5 text-white flex flex-col gap-3" style={style2}>
+              {userDetails?.image ? (
+                <div className="w-full h-32 rounded mx-auto overflow-hidden flex items-center  justify-center">
+                  <img
+                    src={`${userDetails?.image}`}
+                    alt=""
+                    className="object-fit"
+                  />
+                </div>
+              ) : (
+                ""
+              )}
 
-            <h2 className="text-2xl font-medium uppercase">
-              {userDetails?.name}
-            </h2>
-            <h5 className="font-medium uppercase">
-              {" "}
-              {userDetails?.designation}
-            </h5>
-          </div>
+              <h2 className="text-2xl font-medium uppercase">
+                {userDetails?.name}
+              </h2>
+              <h5 className="font-medium uppercase">
+                {" "}
+                {userDetails?.designation}
+              </h5>
+            </div>
+          ) : (
+            ""
+          )}
           {/* contact  */}
-          {contact ? (
+          {Object.keys(contact)?.length > 0 ? (
             <div className=" flex flex-col gap-5 px-5 list-outside">
               <h5 className="uppercase font-medium ">Contact</h5>
               <ul className="flex flex-col text-xs gap-1 list-disc ml-4">

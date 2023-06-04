@@ -129,7 +129,7 @@ const SkillsForm = () => {
             className=" bg-gray-200 text-sm  rounded  transition duration-200 ease-in-out py-2 px-5  hover:bg-gray-300"
           >
             <FontAwesomeIcon icon={faArrowLeft} size="sm" className="mr-1" />{" "}
-            Back home
+            Back
           </button>
         </Link>
         <Link to={"/preview"}>

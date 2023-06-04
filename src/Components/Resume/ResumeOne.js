@@ -30,81 +30,90 @@ const ResumeOne = ({ data }) => {
         style={style}
       >
         {/* header section  */}
-        <div className="flex border-b  pb-5 gap-5">
-          {userDetails?.image ? (
-            <div className=" h-32 w-32 bg-gray-200 ">
-              <img
-                src={`${userDetails?.image}`}
-                alt=""
-                className="object-cover"
-              />
-            </div>
-          ) : (
-            ""
-          )}
-          {userDetails ? (
-            <div
-              className="flex-1 p-5 text-white flex items-center justify-center gap-5"
-              style={style2}
-            >
-              <div className="flex-1">
-                <h2 className="uppercase text-2xl font-semibold">
-                  {userDetails?.name}
-                </h2>
-                <p className="uppercase font-medium text-sm">
-                  {" "}
-                  {userDetails?.designation}
-                </p>
-              </div>
-              <div className="flex-1">
-                <ul className="flex flex-col justify-between h-full text-xs list-inside gap-1">
-                  {contact?.phone ? (
-                    <li>
+        {userDetails?.name ? (
+          <>
+            <div className="flex border-b  pb-5 gap-5">
+              {userDetails?.image ? (
+                <div className=" h-32 w-32 bg-gray-200 ">
+                  <img
+                    src={`${userDetails?.image}`}
+                    alt=""
+                    className="object-cover"
+                  />
+                </div>
+              ) : (
+                ""
+              )}
+              {userDetails?.name ? (
+                <div
+                  className="flex-1 p-5 text-white flex items-center justify-center gap-5"
+                  style={style2}
+                >
+                  <div className="flex-1">
+                    <h2 className="uppercase text-2xl font-semibold">
+                      {userDetails?.name}
+                    </h2>
+                    <p className="uppercase font-medium text-sm">
                       {" "}
-                      <FontAwesomeIcon
-                        icon={faMobilePhone}
-                        className="mr-1"
-                      />{" "}
-                      {contact?.phone}
-                    </li>
-                  ) : (
-                    ""
-                  )}
-                  {contact?.email ? (
-                    <li>
-                      {" "}
-                      <FontAwesomeIcon
-                        icon={faEnvelope}
-                        className="mr-1"
-                      />{" "}
-                      {contact.email}
-                    </li>
-                  ) : (
-                    ""
-                  )}
-                  {contact?.address ? (
-                    <li>
-                      <FontAwesomeIcon icon={faLocationDot} className="mr-1" />
-                      {contact.address}
-                    </li>
-                  ) : (
-                    ""
-                  )}
-                  {contact?.website ? (
-                    <li>
-                      <FontAwesomeIcon icon={faGlobe} className="mr-1" />{" "}
-                      {contact.website}
-                    </li>
-                  ) : (
-                    ""
-                  )}
-                </ul>
-              </div>
+                      {userDetails?.designation}
+                    </p>
+                  </div>
+                  <div className="flex-1">
+                    <ul className="flex flex-col justify-between h-full text-xs list-inside gap-1">
+                      {contact?.phone ? (
+                        <li>
+                          {" "}
+                          <FontAwesomeIcon
+                            icon={faMobilePhone}
+                            className="mr-1"
+                          />{" "}
+                          {contact?.phone}
+                        </li>
+                      ) : (
+                        ""
+                      )}
+                      {contact?.email ? (
+                        <li>
+                          {" "}
+                          <FontAwesomeIcon
+                            icon={faEnvelope}
+                            className="mr-1"
+                          />{" "}
+                          {contact.email}
+                        </li>
+                      ) : (
+                        ""
+                      )}
+                      {contact?.address ? (
+                        <li>
+                          <FontAwesomeIcon
+                            icon={faLocationDot}
+                            className="mr-1"
+                          />
+                          {contact.address}
+                        </li>
+                      ) : (
+                        ""
+                      )}
+                      {contact?.website ? (
+                        <li>
+                          <FontAwesomeIcon icon={faGlobe} className="mr-1" />{" "}
+                          {contact.website}
+                        </li>
+                      ) : (
+                        ""
+                      )}
+                    </ul>
+                  </div>
+                </div>
+              ) : (
+                ""
+              )}
             </div>
-          ) : (
-            ""
-          )}
-        </div>
+          </>
+        ) : (
+          ""
+        )}
         {/* about me  */}
         {userDetails?.about ? (
           <div className="flex border-b py-5 gap-5 ">
@@ -189,32 +198,6 @@ const ResumeOne = ({ data }) => {
         ) : (
           ""
         )}
-        {/* skills */}
-        {/* <div className="flex py-5 gap-5 ">
-          <div className="w-32">
-            <span className="font-bold">Language</span>
-          </div>
-          <div className="flex-1 flex flex-col gap-3 flex-wrap text-xs">
-            <div className="rounded flex gap-3 items-center justify-between">
-              <span> Hindi</span>
-              <div className="h-1 rounded-full w-40 bg-gray-300">
-                <div
-                  className="h-1 w-[30%]  rounded-full"
-                  style={{ ...style2 }}
-                ></div>
-              </div>
-            </div>{" "}
-            <div className="rounded flex gap-3 items-center justify-between">
-              <span> Hindi</span>
-              <div className="h-1 rounded-full w-40 bg-gray-300">
-                <div
-                  className="h-1 w-[30%]  rounded-full"
-                  style={{ ...style2 }}
-                ></div>
-              </div>
-            </div>
-          </div>
-        </div> */}
       </div>
     </>
   );

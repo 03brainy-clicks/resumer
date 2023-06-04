@@ -20,7 +20,7 @@ const EditorPage = () => {
   if (loading) return <Loader />;
 
   return (
-    <div className="bg-gray-50 min-h-[100vh]">
+    <div className=" min-h-[100vh]">
       <div className="lg:w-9/12 w-10/12 mx-auto py-5  ">
         <div
           className="flex items-center justify-between gap-3 text-lg font-medium  text-gray-400 my-7"
@@ -123,7 +123,7 @@ const EditorPage = () => {
           data-aos="fade-up"
           data-aos-duration="2000"
         >
-          <div className="w-[37.205rem] min-h-[52.618rem] mx-auto scale-[.7] absolute  origin-top">
+          <div className="w-[37.205rem] min-h-[52.618rem] mx-auto lg:scale-[.7] md:scale-[.6] absolute  origin-top">
             <Component />
           </div>
         </div>
