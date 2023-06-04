@@ -26,7 +26,7 @@ const ResumeFive = ({ data }) => {
   return (
     <>
       <div
-        className="flex text-gray-700 w-full min-h-[52.618rem] card "
+        className="flex text-gray-700 w-full min-h-[52.618rem] card resume-5"
         style={style}
       >
         <div
@@ -35,7 +35,7 @@ const ResumeFive = ({ data }) => {
         >
           {/* image  */}
           {userDetails?.image ? (
-            <div className="w-32 h-32 rounded-sm mx-auto overflow-hidden border flex items-center  justify-center">
+            <div className="w-32 h-32 rounded mx-auto overflow-hidden border flex items-center  justify-center">
               <img src={`${userDetails?.image}`} alt="" className="object-fit" />
             </div>
           ) : (
@@ -43,7 +43,7 @@ const ResumeFive = ({ data }) => {
           )}
           {/* contact  */}
           <div className="flex flex-col gap-4">
-            {contact?.length >0 ? (
+            {contact?.length > 0 ? (
               <h4 className="font-bold uppercase pb-2 border-b-2 border-gray-500">
                 Contact
               </h4>

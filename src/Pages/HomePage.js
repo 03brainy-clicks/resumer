@@ -1,4 +1,4 @@
-import React from "react";
+import React, { useEffect, useState } from "react";
 import Navigation from "../Components/Navigation";
 import Footer from "../Components/Footer";
 import { useDispatch, useSelector } from "react-redux";
@@ -14,11 +14,21 @@ import TemplateCard from "../Components/cards/TemplateCard";
 import DocumentCard from "../Components/cards/DocumentCard";
 import { Link } from "react-router-dom";
 import { addDocument } from "../Redux/Slice/DocumentSlice";
+import Loader from "../Components/Loader";
+
 
 const HomePage = () => {
   const userData = useSelector((state) => state.user.cred);
   const files = useSelector((state) => state.files.files);
   const dispatch = useDispatch();
+
+  const [loading, setLoading] = useState(true);
+  useEffect(() => {
+    setTimeout(() => setLoading(false), 3000);
+  }, []);
+
+  if (loading) return <Loader />;
+  
   const handleCreate = () => {
     dispatch(
       addDocument({
@@ -46,7 +56,7 @@ const HomePage = () => {
       resumeNo: Resume3,
       template: "Resume-3",
       textColor: "#121212",
-      backgroundColor: "#ffffff",
+      backgroundColor: "#020323",
     },
     {
       resumeNo: Resume4,
@@ -68,7 +78,7 @@ const HomePage = () => {
       <div>
         <div className="lg:w-9/12 w-10/12 mx-auto py-10 flex flex-col gap-11">
           <div
-            className="flex gap-10 p-24 anime-gradient text-white"
+            className="flex gap-10 p-24 bg-indigo-600 text-white rounded"
             data-aos="fade-down"
             data-aos-duration="2000"
           >
@@ -88,7 +98,7 @@ const HomePage = () => {
                 className="text-gary-400 text-lg font-medium"
                 data-aos="fade-up"
                 data-aos-duration="2000"
-                data-aos-delay="1000"
+                data-aos-delay="1000" 
               >
                 What do you want to create?
               </p>
@@ -97,7 +107,7 @@ const HomePage = () => {
               data-aos="fade-up"
               data-aos-duration="2000"
               data-aos-delay="1000"
-              className="text-white bg-white bg-opacity-10  transition duration-500 hover:bg-opacity-20 cursor-pointer py-2 px-5 rounded-sm  flex items-center gap-3"
+              className="text-white bg-white bg-opacity-10  transition duration-500 hover:bg-opacity-20 cursor-pointer py-2 px-5 rounded  flex items-center gap-3"
             >
               <div>
                 {" "}
@@ -114,7 +124,7 @@ const HomePage = () => {
           <hr />
 
           {files?.length > 0 ? (
-            <>  
+            <>
               {" "}
               <div>
                 <h3 className="text-xl font-bold ">Your Documents</h3>

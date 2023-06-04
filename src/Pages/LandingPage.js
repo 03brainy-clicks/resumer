@@ -1,4 +1,4 @@
-import React from "react";
+import React, { useEffect, useState } from "react";
 import Hero from "../assets/hero.svg";
 // import Details from "../assets/details.svg";
 // import Save from "../assets/save.svg";
@@ -6,8 +6,15 @@ import Hero from "../assets/hero.svg";
 import Navigation from "../Components/Navigation";
 import Footer from "../Components/Footer";
 import { Link } from "react-router-dom";
+import Loader from "../Components/Loader";
 
 const LandingPage = () => {
+  const [loading, setLoading] = useState(true);
+  useEffect(() => {
+    setTimeout(() => setLoading(false), 3000);
+  }, []);
+
+  if (loading) return <Loader />;
   return (
     <>
       <div className="flex flex-col w-full justify-center">
@@ -37,7 +44,7 @@ const LandingPage = () => {
               data-aos-duration="2000"
             >
               <Link to={"/signup"}>
-                <button className="bg-indigo-600 text-sm  rounded-sm  transition duration-200 ease-in-out py-2 px-5 text-white hover:bg-indigo-800">
+                <button className="bg-indigo-600 text-sm  rounded  transition duration-200 ease-in-out py-2 px-5 text-white hover:bg-indigo-800">
                   Create Resume for Free
                 </button>
               </Link>
@@ -51,10 +58,9 @@ const LandingPage = () => {
             </div>
           </div>
         </div>
-    <div          data-aos="fade-down"
-              data-aos-duration="2000">
-    <Footer  />
-    </div>
+        <div data-aos="fade-down" data-aos-duration="2000">
+          <Footer />
+        </div>
       </div>
     </>
   );

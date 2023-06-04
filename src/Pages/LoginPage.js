@@ -59,7 +59,7 @@ const LoginPage = () => {
     <div className="">
       <div className="lg:w-9/12 w-10/12 mx-auto flex justify-center items-center h-[100vh]  ">
         <div
-          className="lg:w-1/3 md:3/4 w-full shadow-2xl card p-9 rounded-sm"
+          className="lg:w-1/3 md:3/4 w-full shadow-2xl card p-9 rounded"
           data-aos="fade-up"
           data-aos-duration="2000"
         >
@@ -84,7 +84,7 @@ const LoginPage = () => {
                 onChange={(e) => setEmail(e.target.value)}
                 placeholder="Email"
                 required
-                className="py-2 px-2 bg-gray-100 rounded-sm  text-sm  mt-1 w-full outline-none  "
+                className="py-2 px-2 bg-gray-100 rounded  text-sm  mt-1 w-full outline-none  "
               />
               {emailErr && (
                 <p className="text-red-500 mt-1 text-xs">
@@ -103,7 +103,7 @@ const LoginPage = () => {
                 value={password}
                 required
                 onChange={(e) => setPassword(e.target.value)}
-                className="py-2 px-2 bg-gray-100 rounded-sm  text-sm  my-1  w-full outline-none  "
+                className="py-2 px-2 bg-gray-100 rounded  text-sm  my-1  w-full outline-none  "
               />
               {pwdError && (
                 <p className="text-red-500 mt-1 text-xs">
@@ -119,12 +119,12 @@ const LoginPage = () => {
             <div className="mt-2">
               <button
                 onClick={handleLogin}
-                className="bg-indigo-600 transition text-sm  rounded-sm duration-200  ease-in-out py-2 px-5 text-white hover:bg-indigo-800 w-full"
+                className="bg-indigo-600 transition text-sm  rounded duration-200  ease-in-out py-2 px-5 text-white hover:bg-indigo-800 w-full"
               >
                 Login
               </button>{" "}
               <Link to={"/"}>
-                <button className="border-2 font-medium transition text-sm mt-3  rounded-sm duration-200  ease-in-out py-2 px-5 hover:text-indigo-800 w-full">
+                <button className="border-2 font-medium transition text-sm mt-3  rounded duration-200  ease-in-out py-2 px-5 hover:text-indigo-800 w-full">
                   <FontAwesomeIcon icon={faArrowLeft} /> Back
                 </button>
               </Link>

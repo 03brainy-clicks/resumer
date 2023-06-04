@@ -94,7 +94,7 @@ const Navigation = () => {
                       onClick={() => {
                         setActive("signup");
                       }}
-                      className="bg-indigo-600 transition  rounded-sm duration-200  ease-in-out py-2 px-5 text-white hover:bg-indigo-800"
+                      className="bg-indigo-600 transition  rounded duration-200  ease-in-out py-2 px-5 text-white hover:bg-indigo-800"
                     >
                       Get Started
                     </button>

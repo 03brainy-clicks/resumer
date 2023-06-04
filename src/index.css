@@ -3,12 +3,25 @@
 @tailwind utilities;
 
 @import url("https://fonts.googleapis.com/css2?family=Poppins:wght@100;200;300;400;500;600;700;800;900&display=swap");
+@import url("https://fonts.googleapis.com/css2?family=Noto+Sans:wght@100;200;300;400;500;600;700;800;900&display=swap");
+@import url("https://fonts.googleapis.com/css2?family=Oswald:wght@200;300;400;500;600;700&display=swap");
+@import url("https://fonts.googleapis.com/css2?family=Raleway:wght@100;200;300;400;500;600;700;800;900&display=swap");
 
 body {
   font-family: "Poppins", sans-serif;
   margin: 0px;
   padding: 0px;
   background-color: white;
+}
+
+.resume-1 {
+  font-family: "Noto Sans", sans-serif;
+}
+.resume-3 {
+  font-family: "Raleway", sans-serif;
+}
+.resume-3 :is(h1, h2, h3, h4, h5, h6) {
+  font-family: "Oswald", sans-serif;
 }
 
 * {
@@ -34,11 +47,10 @@ body {
 
 .anime-gradient {
   background: linear-gradient(
-    137deg,
+    145deg,
     #4338ca,
     #115fdd,
     #1192dd,
-    #6ee7b7,
     #6ee7b7,
     #1192dd,
     #115fdd,

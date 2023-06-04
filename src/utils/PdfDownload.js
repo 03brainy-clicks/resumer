@@ -11,7 +11,7 @@ const downloadComponentAsPDF = async (componentRef) => {
     useCORS: true, // Enable CORS if necessary
   });
 
-  const imgData = canvas.toDataURL("image/jpeg", 1.0);
+  const imgData = canvas.toDataURL("image/png", 1.0);
 
   // Set the page size to A4
   const pageWidth = 595.28;
@@ -34,7 +34,7 @@ const downloadComponentAsPDF = async (componentRef) => {
   const xPos = (pageWidth - imgWidth) / 2;
   const yPos = 0; // Start from the top of the page
   // Add the captured image to the PDF as a cover page
-  pdf.addImage(imgData, "JPEG", xPos, yPos, imgWidth, imgHeight);
+  pdf.addImage(imgData, "PNG", xPos, yPos, imgWidth, imgHeight);
 
   // Download the PDF
   pdf.save("component_cover.pdf");
