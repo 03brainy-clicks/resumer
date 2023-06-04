@@ -15,6 +15,7 @@ const View = () => {
   const cred = useSelector((state) => state.user.cred);
   const files = useSelector((state) => state.files.files);
   const document = useSelector((state) => state.document.document);
+  const userDetails = useSelector((state) => state.userDetails.details);
   const dispatch = useDispatch();
   const navigate = useNavigate();
 
@@ -22,7 +23,7 @@ const View = () => {
   const resumeRef = useRef();
 
   const handleDownloadCover = () => {
-    downloadComponentAsPDF(resumeRef);
+    downloadComponentAsPDF(resumeRef,userDetails?.image);
   };
 
   const handleBack = (e) => {
@@ -80,20 +81,20 @@ const View = () => {
             >
               <button
                 onClick={handleDownloadCover}
-                className="bg-indigo-600 text-sm w-full  rounded-sm  transition duration-200 ease-in-out py-2 px-5 text-white hover:bg-indigo-800"
+                className="bg-indigo-600 text-sm w-full  rounded  transition duration-200 ease-in-out py-2 px-5 text-white hover:bg-indigo-800"
               >
                 Download{" "}
                 <FontAwesomeIcon icon={faDownload} size="sm" className="ml-1" />
               </button>{" "}
               <button
                 onClick={handleBack}
-                className="bg-gray-100 text-sm w-full font-medium  rounded-sm  transition duration-200 ease-in-out py-2 px-5  hover:bg-gray-200"
+                className="bg-gray-100 text-sm w-full font-medium  rounded  transition duration-200 ease-in-out py-2 px-5  hover:bg-gray-200"
               >
                 Back
               </button>{" "}
               <button
                 onClick={handleDelete}
-                className="bg-gray-100 text-sm w-full font-medium  rounded-sm  transition duration-200 ease-in-out py-2 px-5 hover:text-white hover:bg-red-500"
+                className="bg-gray-100 text-sm w-full font-medium  rounded  transition duration-200 ease-in-out py-2 px-5 hover:text-white hover:bg-red-500"
               >
                 Delete
               </button>{" "}

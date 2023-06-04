@@ -7,6 +7,7 @@ import { BlockPicker } from "react-color";
 import { resetAllStoreAfterSave } from "../../utils/FirebaseFunction";
 import { FontAwesomeIcon } from "@fortawesome/react-fontawesome";
 import { faArrowLeft, faArrowRight } from "@fortawesome/free-solid-svg-icons";
+import { addState } from "../../Redux/Slice/StateSlice";
 
 const DocumentForm = () => {
   const dispatch = useDispatch();
@@ -29,6 +30,7 @@ const DocumentForm = () => {
         documentName,
         textColor,
         backgroundColor,
+        template: document?.template,
       };
       dispatch(addDocument(data));
     }
@@ -76,7 +78,7 @@ const DocumentForm = () => {
               value={documentName}
               onChange={(e) => setDocumentName(e.target.value)}
               placeholder="Document Name"
-              className="py-2 px-2 bg-gray-200 rounded-sm  text-sm  mt-1 w-full outline-none  "
+              className="py-2 px-2 bg-gray-100 rounded  text-sm  mt-1 w-full outline-none  "
             />
           </div>
           <div className="w-full flex gap-5 items-center ">
@@ -86,7 +88,7 @@ const DocumentForm = () => {
               </label>
               <br />
 
-              <BlockPicker  
+              <BlockPicker
                 className="mt-5"
                 color={document?.textColor}
                 onChangeComplete={handleChangeText}
@@ -107,7 +109,7 @@ const DocumentForm = () => {
           <div className="mt-1">
             <button
               onClick={handleDocument}
-              className="bg-indigo-600 text-sm  rounded-sm  transition duration-200 ease-in-out py-2 px-5 text-white hover:bg-indigo-800"
+              className="bg-indigo-600 text-sm  rounded  transition duration-200 ease-in-out py-2 px-5 text-white hover:bg-indigo-800"
             >
               Save
             </button>
@@ -117,13 +119,16 @@ const DocumentForm = () => {
       <div className="flex mt-11 justify-between">
         <button
           onClick={handleReset}
-          className=" bg-gray-200 text-sm  rounded-sm  transition duration-200 ease-in-out py-2 px-5  hover:bg-gray-300"
+          className=" bg-gray-200 text-sm  rounded  transition duration-200 ease-in-out py-2 px-5  hover:bg-gray-300"
         >
           <FontAwesomeIcon icon={faArrowLeft} size="sm" className="mr-1" /> Back
           home
         </button>
         <Link to={"/editor/userdetails"}>
-          <button className=" bg-indigo-600 text-sm  rounded-sm  transition duration-200 ease-in-out py-2 px-5 text-white hover:bg-indigo-800">
+          <button
+            onClick={() => dispatch(addState(1))}
+            className=" bg-indigo-600 text-sm  rounded  transition duration-200 ease-in-out py-2 px-5 text-white hover:bg-indigo-800"
+          >
             Next{" "}
             <FontAwesomeIcon icon={faArrowRight} size="sm" className="ml-1" />
           </button>

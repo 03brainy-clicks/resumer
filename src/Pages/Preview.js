@@ -1,4 +1,4 @@
-import React, { useRef, useState } from "react";
+import React, { useRef, useState, useEffect } from "react";
 import Resume from "../Components/Resume/Index";
 import downloadComponentAsPDF from "../utils/PdfDownload";
 import { useDispatch, useSelector } from "react-redux";
@@ -11,6 +11,8 @@ import { db } from "../Firebase/Firebase.Config";
 import { resetAllStoreAfterSave } from "../utils/FirebaseFunction";
 import { addFiles } from "../Redux/Slice/FilesSlice";
 import { v4 as uuidv4 } from "uuid";
+import { addState } from "../Redux/Slice/StateSlice";
+import Loader from "../Components/Loader";
 
 const Preview = () => {
   const files = useSelector((state) => state.files.files);
@@ -26,8 +28,15 @@ const Preview = () => {
   const Component = Resume(document?.template);
   const resumeRef = useRef();
 
+  const [loading, setLoading] = useState(true);
+  useEffect(() => {
+    setTimeout(() => setLoading(false), 3000);
+  }, []);
+
+  if (loading) return <Loader />;
+
   const handleDownloadCover = () => {
-    downloadComponentAsPDF(resumeRef);
+    downloadComponentAsPDF(resumeRef, userdetails?.image);
   };
 
   const handleSave = async (e) => {
@@ -41,18 +50,21 @@ const Preview = () => {
       education,
       skills,
     };
-    console.table(data)
-    await setDoc(doc(db, "userFiles", cred.uid), {
-      files: [data, ...files],
-    })
-      .then((res) => {
-        let datas = [data, ...files];
-        dispatch(addFiles(datas));
-        resetAllStoreAfterSave(dispatch);
-        navigate("/home");
-        toast.success("Save success");
+    if (userdetails?.image) {
+      await setDoc(doc(db, "userFiles", cred.uid), {
+        files: [data, ...files],
       })
-      .catch((err) => console.log(err));
+        .then((res) => {
+          let datas = [data, ...files];
+          dispatch(addFiles(datas));
+          resetAllStoreAfterSave(dispatch);
+          navigate("/home");
+          toast.success("Save success");
+        })
+        .catch((err) => console.log(err));
+    } else {
+      console.log("FAILED");
+    }
   };
 
   return (
@@ -91,18 +103,21 @@ const Preview = () => {
             >
               <button
                 onClick={handleSave}
-                className="bg-indigo-600 text-sm w-full  rounded-sm  transition duration-200 ease-in-out py-2 px-5 text-white hover:bg-indigo-800"
+                className="bg-indigo-600 text-sm w-full  rounded  transition duration-200 ease-in-out py-2 px-5 text-white hover:bg-indigo-800"
               >
                 Save
               </button>{" "}
               <button
                 onClick={handleDownloadCover}
-                className="bg-gray-100 text-sm w-full font-medium rounded-sm  transition duration-200 ease-in-out py-2 px-5 hover:bg-gray-200"
+                className="bg-gray-100 text-sm w-full font-medium rounded  transition duration-200 ease-in-out py-2 px-5 hover:bg-gray-200"
               >
                 Download
               </button>{" "}
               <Link to="/editor/document">
-                <button className="bg-gray-100 text-sm w-full font-medium  rounded-sm  transition duration-200 ease-in-out py-2 px-5  hover:bg-gray-200">
+                <button
+                  onClick={() => dispatch(addState(0))}
+                  className="bg-gray-100 text-sm w-full font-medium  rounded  transition duration-200 ease-in-out py-2 px-5  hover:bg-gray-200"
+                >
                   Back To Edit
                 </button>{" "}
               </Link>
@@ -137,6 +152,7 @@ const DocumentForm = () => {
         documentName,
         textColor,
         backgroundColor,
+        template: document?.template,
       };
       dispatch(addDocument(data));
     }
@@ -178,7 +194,7 @@ const DocumentForm = () => {
               value={documentName}
               onChange={(e) => setDocumentName(e.target.value)}
               placeholder="Document Name"
-              className="py-2 px-2 bg-gray-100 rounded-sm  text-sm  mt-1 w-full outline-none  "
+              className="py-2 px-2 bg-gray-100 rounded  text-sm  mt-1 w-full outline-none  "
             />
           </div>
           <div className="w-full flex gap-5 items-center ">
@@ -209,7 +225,7 @@ const DocumentForm = () => {
           <div className="mt-1">
             <button
               onClick={handleDocument}
-              className="bg-indigo-600 text-sm w-full  rounded-sm  transition duration-200 ease-in-out py-2 px-5 text-white hover:bg-indigo-800"
+              className="bg-indigo-600 text-sm w-full  rounded  transition duration-200 ease-in-out py-2 px-5 text-white hover:bg-indigo-800"
             >
               Save Changes
             </button>

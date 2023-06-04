@@ -5,6 +5,7 @@ import { addContact } from "../../Redux/Slice/ContactSlice";
 import { toast } from "react-toastify";
 import { FontAwesomeIcon } from "@fortawesome/react-fontawesome";
 import { faArrowLeft, faArrowRight } from "@fortawesome/free-solid-svg-icons";
+import { addState } from "../../Redux/Slice/StateSlice";
 
 const ContactForm = () => {
   const dispatch = useDispatch();
@@ -55,7 +56,7 @@ const ContactForm = () => {
               value={email}
               onChange={(e) => setEmail(e.target.value)}
               placeholder="Email"
-              className="py-2 px-2 bg-indigo-50 rounded-sm  text-sm  mt-1 w-full outline-none  "
+              className="py-2 px-2 bg-gray-100 rounded  text-sm  mt-1 w-full outline-none  "
             />
           </div>
           <div className="w-full ">
@@ -69,7 +70,7 @@ const ContactForm = () => {
               onChange={(e) => setPhone(e.target.value)}
               maxlength="10"
               placeholder="Phone Number"
-              className="py-2 px-2 bg-indigo-50 rounded-sm  text-sm  mt-1 w-full outline-none  "
+              className="py-2 px-2 bg-gray-100 rounded  text-sm  mt-1 w-full outline-none  "
             />
           </div>{" "}
           <div className="w-full ">
@@ -82,7 +83,7 @@ const ContactForm = () => {
               value={website}
               onChange={(e) => setWebsite(e.target.value)}
               placeholder="Website"
-              className="py-2 px-2 bg-indigo-50 rounded-sm  text-sm  mt-1 w-full outline-none  "
+              className="py-2 px-2 bg-gray-100 rounded  text-sm  mt-1 w-full outline-none  "
             />
           </div>
           <div className="w-full ">
@@ -95,13 +96,13 @@ const ContactForm = () => {
               value={address}
               onChange={(e) => setAddress(e.target.value)}
               placeholder="Address"
-              className="py-2 px-2 bg-indigo-50 rounded-sm  text-sm  mt-1 w-full outline-none  "
+              className="py-2 px-2 bg-gray-100 rounded  text-sm  mt-1 w-full outline-none  "
             />
           </div>{" "}
           <div className="">
             <button
               onClick={handleContact}
-              className="bg-indigo-600 text-sm  rounded-sm  transition duration-200 ease-in-out py-2 px-5 text-white hover:bg-indigo-800"
+              className="bg-indigo-600 text-sm  rounded  transition duration-200 ease-in-out py-2 px-5 text-white hover:bg-indigo-800"
             >
               Save
             </button>
@@ -110,13 +111,15 @@ const ContactForm = () => {
       </div>
       <div className="flex mt-11 justify-between">
         <Link to={"/editor/userdetails"}>
-          <button className=" bg-gray-200 text-sm  rounded-sm  transition duration-200 ease-in-out py-2 px-5  hover:bg-gray-300">
-          <FontAwesomeIcon icon={faArrowLeft } size="sm" className="mr-1"/>  Back 
+          <button onClick={() => dispatch(addState(1))} className=" bg-gray-200 text-sm  rounded  transition duration-200 ease-in-out py-2 px-5  hover:bg-gray-300">
+            <FontAwesomeIcon icon={faArrowLeft} size="sm" className="mr-1" />{" "}
+            Back
           </button>
         </Link>
         <Link to={"/editor/experience"}>
-          <button className=" bg-indigo-600 text-sm  rounded-sm  transition duration-200 ease-in-out py-2 px-5 text-white hover:bg-indigo-800">
-          Next <FontAwesomeIcon icon={faArrowRight}  size="sm" className="ml-1" />
+          <button  onClick={() => dispatch(addState(3))} className=" bg-indigo-600 text-sm  rounded  transition duration-200 ease-in-out py-2 px-5 text-white hover:bg-indigo-800">
+            Next{" "}
+            <FontAwesomeIcon icon={faArrowRight} size="sm" className="ml-1" />
           </button>
         </Link>
       </div>

@@ -6,6 +6,7 @@ import { v4 as uuidv4 } from "uuid";
 import { useDispatch, useSelector } from "react-redux";
 import { toast } from "react-toastify";
 import { addEducation } from "../../Redux/Slice/EducationSlice";
+import { addState } from "../../Redux/Slice/StateSlice";
 
 const EducationForm = () => {
   const dispatch = useDispatch();
@@ -119,7 +120,7 @@ const EducationForm = () => {
             placeholder="Specialization"
             value={degree}
             onChange={(e) => setDegree(e.target.value)}
-            className="py-2 px-2 bg-indigo-50 rounded-sm  text-sm  mt-1 w-full outline-none  "
+            className="py-2 px-2 bg-gray-100 rounded  text-sm  mt-1 w-full outline-none  "
           />
         </div>{" "}
         <div className="w-full ">
@@ -135,7 +136,7 @@ const EducationForm = () => {
             placeholder="institute"
             value={school}
             onChange={(e) => setSchool(e.target.value)}
-            className="py-2 px-2 bg-indigo-50 rounded-sm  text-sm  mt-1 w-full outline-none  "
+            className="py-2 px-2 bg-gray-100 rounded  text-sm  mt-1 w-full outline-none  "
           />
         </div>{" "}
         <div className="flex gap-3">
@@ -149,7 +150,7 @@ const EducationForm = () => {
               placeholder="Start Date"
               value={start}
               onChange={(e) => setStart(e.target.value)}
-              className="py-2 px-2 bg-indigo-50 rounded-sm  text-sm  mt-1 w-full outline-none  "
+              className="py-2 px-2 bg-gray-100 rounded  text-sm  mt-1 w-full outline-none  "
             />
           </div>{" "}
           <div className="w-full ">
@@ -162,14 +163,14 @@ const EducationForm = () => {
               placeholder="End Date"
               value={end}
               onChange={(e) => setEnd(e.target.value)}
-              className="py-2 px-2 bg-indigo-50 rounded-sm  text-sm  mt-1 w-full outline-none  "
+              className="py-2 px-2 bg-gray-100 rounded  text-sm  mt-1 w-full outline-none  "
             />
           </div>
         </div>
         <div className="">
           <button
             onClick={handleEducation}
-            className="bg-indigo-600 text-sm  rounded-sm  transition duration-200 ease-in-out py-2 px-5 text-white hover:bg-indigo-800"
+            className="bg-indigo-600 text-sm  rounded  transition duration-200 ease-in-out py-2 px-5 text-white hover:bg-indigo-800"
           >
             Add
           </button>
@@ -178,12 +179,12 @@ const EducationForm = () => {
       </div>
       <div className="flex mt-11 justify-between">
         <Link to={"/editor/experience"}>
-          <button className=" bg-gray-200 text-sm  rounded-sm  transition duration-200 ease-in-out py-2 px-5  hover:bg-gray-300">
+          <button onClick={() => dispatch(addState(3))} className=" bg-gray-200 text-sm  rounded  transition duration-200 ease-in-out py-2 px-5  hover:bg-gray-300">
           <FontAwesomeIcon icon={faArrowLeft} size="sm" className="mr-1"/>  Back 
           </button>
         </Link>
         <Link to={"/editor/skills"}>
-          <button className=" bg-indigo-600 text-sm  rounded-sm  transition duration-200 ease-in-out py-2 px-5 text-white hover:bg-indigo-800">
+          <button onClick={() => dispatch(addState(5))} className=" bg-indigo-600 text-sm  rounded  transition duration-200 ease-in-out py-2 px-5 text-white hover:bg-indigo-800">
          Next <FontAwesomeIcon icon={faArrowRight } size="sm" className="ml-1"/>  
           </button>
         </Link>

@@ -17,13 +17,13 @@ const PageNotFound = () => {
           {cred?.uid ? (
             <Link to={"/home"}>
               {" "}
-              <button className="bg-indigo-600 mt-12 transition mx-auto rounded-sm duration-200  ease-in-out py-2 px-5 text-white hover:bg-indigo-800">
+              <button className="bg-indigo-600 mt-12 transition mx-auto rounded duration-200  ease-in-out py-2 px-5 text-white hover:bg-indigo-800">
                 Back home
               </button>{" "}
             </Link>
           ) : (
             <Link to={"/"}>
-              <button className="bg-indigo-600 mt-12 transition mx-auto rounded-sm duration-200  ease-in-out py-2 px-5 text-white hover:bg-indigo-800">
+              <button className="bg-indigo-600 mt-12 transition mx-auto rounded duration-200  ease-in-out py-2 px-5 text-white hover:bg-indigo-800">
                 Back home
               </button>{" "}
             </Link>

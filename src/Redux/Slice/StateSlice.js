@@ -1,6 +1,6 @@
 import { createSlice } from "@reduxjs/toolkit";
 
-const initialState = { state: 1 };
+const initialState = { state: 0 };
 
 const StateSlice = createSlice({
   name: "state",
@@ -10,7 +10,7 @@ const StateSlice = createSlice({
       state.state = action.payload;
     },
     resetState(state) {
-      state.state = 1;
+      state.state = 0;
     },
   },
 });

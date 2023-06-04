@@ -31,6 +31,7 @@ const resetAllStoreAfterSave = (dispatch) => {
   dispatch(resetSkills());
   dispatch(resetState());
   dispatch(resetUserDetails());
+  dispatch(resetState());
 };
 
 const addAllValueToStore = (dispatch, data) => {

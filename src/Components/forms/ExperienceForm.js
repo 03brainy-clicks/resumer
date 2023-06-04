@@ -6,6 +6,7 @@ import { Link } from "react-router-dom";
 import { v4 as uuidv4 } from "uuid";
 import { addExperience } from "../../Redux/Slice/ExperienceSlice";
 import { toast } from "react-toastify";
+import { addState } from "../../Redux/Slice/StateSlice";
 
 const ExperienceForm = () => {
   const dispatch = useDispatch();
@@ -116,7 +117,7 @@ const ExperienceForm = () => {
               placeholder="Company"
               value={company}
               onChange={(e) => setCompany(e.target.value)}
-              className="py-2 px-2 bg-indigo-50 rounded-sm  text-sm  mt-1 w-full outline-none  "
+              className="py-2 px-2 bg-gray-100 rounded  text-sm  mt-1 w-full outline-none  "
             />
           </div>{" "}
           <div className="w-full ">
@@ -129,7 +130,7 @@ const ExperienceForm = () => {
               placeholder="Designation"
               value={designation}
               onChange={(e) => setDesignation(e.target.value)}
-              className="py-2 px-2 bg-indigo-50 rounded-sm  text-sm  mt-1 w-full outline-none  "
+              className="py-2 px-2 bg-gray-100 rounded  text-sm  mt-1 w-full outline-none  "
             />
           </div>{" "}
           <div className="flex gap-3">
@@ -143,7 +144,7 @@ const ExperienceForm = () => {
                 placeholder="Start Date"
                 value={start}
                 onChange={(e) => setStart(e.target.value)}
-                className="py-2 px-2 bg-indigo-50 rounded-sm  text-sm  mt-1 w-full outline-none  "
+                className="py-2 px-2 bg-gray-100 rounded  text-sm  mt-1 w-full outline-none  "
               />
             </div>{" "}
             <div className="w-full ">
@@ -156,7 +157,7 @@ const ExperienceForm = () => {
                 placeholder="End Date"
                 value={end}
                 onChange={(e) => setEnd(e.target.value)}
-                className="py-2 px-2 bg-indigo-50 rounded-sm  text-sm  mt-1 w-full outline-none  "
+                className="py-2 px-2 bg-gray-100 rounded  text-sm  mt-1 w-full outline-none  "
               />
             </div>
           </div>
@@ -172,13 +173,13 @@ const ExperienceForm = () => {
               placeholder="Description"
               value={description}
               onChange={(e) => setDescription(e.target.value)}
-              className="py-2 px-2 bg-indigo-50 rounded-sm  text-sm  mt-1 w-full outline-none  "
+              className="py-2 px-2 bg-gray-100 rounded  text-sm  mt-1 w-full outline-none  "
             ></textarea>
           </div>
           <div className="">
             <button
               onClick={handleExperience}
-              className="bg-indigo-600 text-sm  rounded-sm  transition duration-200 ease-in-out py-2 px-5 text-white hover:bg-indigo-800"
+              className="bg-indigo-600 text-sm  rounded  transition duration-200 ease-in-out py-2 px-5 text-white hover:bg-indigo-800"
             >
               Add
             </button>
@@ -187,12 +188,12 @@ const ExperienceForm = () => {
       </div>
       <div className="flex mt-11 justify-between">
         <Link to={"/editor/contact"}>
-          <button className=" bg-gray-200 text-sm  rounded-sm  transition duration-200 ease-in-out py-2 px-5  hover:bg-gray-300">
+          <button onClick={() => dispatch(addState(2))} className=" bg-gray-200 text-sm  rounded  transition duration-200 ease-in-out py-2 px-5  hover:bg-gray-300">
           <FontAwesomeIcon icon={faArrowLeft } size="sm" className="mr-1"/>  Back 
           </button>
         </Link>
         <Link to={"/editor/education"}>
-          <button className=" bg-indigo-600 text-sm  rounded-sm  transition duration-200 ease-in-out py-2 px-5 text-white hover:bg-indigo-800">
+          <button onClick={() => dispatch(addState(4))} className=" bg-indigo-600 text-sm  rounded  transition duration-200 ease-in-out py-2 px-5 text-white hover:bg-indigo-800">
           Next <FontAwesomeIcon icon={faArrowRight}  size="sm" className="ml-1" />
           </button>
         </Link>

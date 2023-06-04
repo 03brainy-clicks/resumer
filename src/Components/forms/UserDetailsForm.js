@@ -5,6 +5,7 @@ import { toast } from "react-toastify";
 import { addUserDetails } from "../../Redux/Slice/UserDetailsSlice";
 import { FontAwesomeIcon } from "@fortawesome/react-fontawesome";
 import { faArrowLeft, faArrowRight } from "@fortawesome/free-solid-svg-icons";
+import { addState } from "../../Redux/Slice/StateSlice";
 
 const UserDetailsForm = () => {
   const dispatch = useDispatch();
@@ -38,8 +39,6 @@ const UserDetailsForm = () => {
   const handleImageChange = (event) => {
     event.preventDefault();
     const file = event?.target?.files[0];
-
-console.log(URL.createObjectURL(file))
 
     const reader = new FileReader();
     reader.onloadend = () => {
@@ -79,7 +78,7 @@ console.log(URL.createObjectURL(file))
                   placeholder="Name"
                   value={name}
                   onChange={(e) => setName(e.target.value)}
-                  className="py-2 px-2 bg-gray-100 rounded-sm  text-sm  mt-1 w-full outline-none  "
+                  className="py-2 px-2 bg-gray-100 rounded  text-sm  mt-1 w-full outline-none  "
                 />
               </div>
 
@@ -93,7 +92,7 @@ console.log(URL.createObjectURL(file))
                   value={designation}
                   onChange={(e) => setDesignation(e.target.value)}
                   placeholder="Designation"
-                  className="py-2 px-2 bg-gray-100 rounded-sm  text-sm  mt-1 w-full outline-none  "
+                  className="py-2 px-2 bg-gray-100 rounded  text-sm  mt-1 w-full outline-none  "
                 />
               </div>
               <div className="flex-1">
@@ -103,7 +102,7 @@ console.log(URL.createObjectURL(file))
                 <br />
                 <button
                   onClick={handleSelectImage}
-                  className="bg-gray-100 text-sm w-full  rounded-sm  transition duration-200 ease-in-out py-2 px-5 text-gray-400  hover:bg-gray-200"
+                  className="bg-gray-100 text-sm w-full  rounded  transition duration-200 ease-in-out py-2 px-5 text-gray-400  hover:bg-gray-200"
                 >
                   Select Image
                 </button>
@@ -145,13 +144,13 @@ console.log(URL.createObjectURL(file))
               placeholder="About"
               value={about}
               onChange={(e) => setAbout(e.target.value)}
-              className="py-2 px-2 bg-gray-100 rounded-sm  text-sm  mt-1 w-full outline-none  "
+              className="py-2 px-2 bg-gray-100 rounded  text-sm  mt-1 w-full outline-none  "
             ></textarea>
           </div>
           <div>
             <button
               onClick={handleDetails}
-              className="ml-auto bg-indigo-600 text-sm  rounded-sm  transition duration-200 ease-in-out py-2 px-5 text-white hover:bg-indigo-800"
+              className="ml-auto bg-indigo-600 text-sm  rounded  transition duration-200 ease-in-out py-2 px-5 text-white hover:bg-indigo-800"
             >
               Save
             </button>
@@ -161,14 +160,20 @@ console.log(URL.createObjectURL(file))
 
       <div className="flex mt-11 justify-between">
         <Link to={"/editor/document"}>
-          <button className=" bg-gray-200 text-sm  rounded-sm  transition duration-200 ease-in-out py-2 px-5  hover:bg-gray-300">
+          <button
+            onClick={() => dispatch(addState(0))}
+            className=" bg-gray-200 text-sm  rounded  transition duration-200 ease-in-out py-2 px-5  hover:bg-gray-300"
+          >
             <FontAwesomeIcon icon={faArrowLeft} size="sm" className="mr-1" />{" "}
             Back
           </button>
         </Link>
 
         <Link to={"/editor/contact"}>
-          <button className=" bg-indigo-600 text-sm  rounded-sm  transition duration-200 ease-in-out py-2 px-5 text-white hover:bg-indigo-800">
+          <button
+            onClick={() => dispatch(addState(2))}
+            className=" bg-indigo-600 text-sm  rounded  transition duration-200 ease-in-out py-2 px-5 text-white hover:bg-indigo-800"
+          >
             Next{" "}
             <FontAwesomeIcon icon={faArrowRight} size="sm" className="ml-1" />
           </button>
